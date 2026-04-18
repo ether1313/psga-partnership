@@ -1,0 +1,5 @@
+# https://www.psgapgk.com — auto-generated (see npm run generate:seo)
+User-agent: *
+Allow: /
+
+Sitemap: https://www.psgapgk.com/sitemap.xml
