@@ -51,7 +51,7 @@ export default function BottomNav() {
         }
       `}</style>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-stretch h-16 bg-white border-t border-slate-200 shadow-[0_-4px_24px_rgba(15,23,42,0.08)]">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex min-h-16 items-stretch bg-white border-t border-slate-200 shadow-[0_-4px_24px_rgba(15,23,42,0.08)] md:min-h-[4.25rem] [padding-bottom:max(0px,env(safe-area-inset-bottom))]">
         {navItems.map((item) => {
           const isActive =
             item.id === 'rtp-games'
@@ -84,7 +84,7 @@ export default function BottomNav() {
 
               <div className="w-8 h-8 flex items-center justify-center relative">
                 <i
-                  className={`${item.icon} text-xl transition-colors duration-200`}
+                  className={`${item.icon} text-xl transition-colors duration-200 md:text-[1.35rem]`}
                   style={{
                     color: isActive ? BRAND : '#64748b',
                     animation: isPressed ? `${iconAnim} 0.5s ease-in-out` : 'none',

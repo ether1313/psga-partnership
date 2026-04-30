@@ -21,7 +21,7 @@ export default function SiteHeader() {
           backdropFilter: 'blur(10px)',
         }}
       >
-        <div className="relative flex items-center justify-center px-4 py-3">
+        <div className="relative flex items-center justify-center px-4 py-3 md:px-8 md:py-3.5 lg:px-6">
           <a href="/" className="flex items-center justify-center gap-4">
             {/*
               Logo PNG is raster: any words baked into the image cannot change font via CSS.
@@ -30,7 +30,7 @@ export default function SiteHeader() {
             <img
               src="https://storage.readdy-site.link/project_files/e0a8be36-44a1-49ae-8c9c-bcd59c8e395f/d9cd378f-f92b-440e-b8fc-71f025618564_Image_20260417145639_357_17.png"
               alt="PSGA Papua New Guinea"
-              className="h-16 object-contain shrink-0"
+              className="h-14 object-contain shrink-0 sm:h-16 md:h-[4.25rem] lg:h-16"
               style={{ filter: 'drop-shadow(0 2px 8px rgba(180,83,9,0.2))' }}
             />
             <div className="goldman-regular flex flex-col gap-0">
@@ -63,7 +63,7 @@ export default function SiteHeader() {
 
       {/* Marquee ticker */}
       <div
-        className="overflow-hidden whitespace-nowrap py-2 relative border-b border-red-900/10"
+        className="overflow-hidden whitespace-nowrap py-2 md:py-2.5 relative border-b border-red-900/10"
         style={{
           background: 'linear-gradient(90deg, #9f1239, #b91c1c, #dc2626, #b91c1c, #9f1239)',
         }}

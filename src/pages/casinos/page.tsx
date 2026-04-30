@@ -189,7 +189,7 @@ function CategorySection({
 
 export default function CasinosPage() {
   return (
-    <div className="min-h-screen pb-24 relative bg-slate-100 text-slate-900">
+    <div className="min-h-screen pb-24 md:pb-28 relative bg-slate-100 text-slate-900">
       {/* Grid background */}
       <GridBackground zone="normal" style={{ position: 'fixed', zIndex: 0 }} />
 
@@ -197,7 +197,7 @@ export default function CasinosPage() {
         <SiteHeader />
 
         {/* Page title */}
-        <div className="py-4 px-4 text-center bg-white/90 border-b border-slate-200 md:py-6">
+        <div className="py-4 px-4 text-center bg-white/90 border-b border-slate-200 md:py-5 md:px-8 lg:px-6">
           <h1
             className="headline-cinematic text-xl sm:text-2xl md:text-3xl leading-tight"
             style={{ color: '#C04000' }}
@@ -210,7 +210,7 @@ export default function CasinosPage() {
           </p>
         </div>
 
-        <main className="max-w-3xl mx-auto px-3 py-4 flex flex-col gap-4">
+        <main className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 py-4 md:max-w-4xl md:gap-5 md:px-8 md:py-6 lg:px-6">
           <CategorySection
             category="toptier"
             casinos={toptierCasinos}

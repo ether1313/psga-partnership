@@ -87,8 +87,8 @@ export default function FeaturesSection() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section className="py-5 px-4 bg-transparent md:py-8 lg:py-10">
-      <div className="max-w-screen-xl mx-auto">
+    <section className="py-5 px-4 bg-transparent md:px-6 md:py-8 lg:px-4 lg:py-10">
+      <div className="mx-auto w-full max-w-screen-xl md:max-w-4xl lg:max-w-screen-xl">
         <div className="text-center mb-4 md:mb-6 lg:mb-8">
           <div className="inline-block relative px-4 py-1 md:px-6 md:py-2">
             <div
@@ -109,7 +109,8 @@ export default function FeaturesSection() {
           />
         </div>
 
-        <div className="hidden lg:grid lg:grid-cols-3 gap-5">
+        {/* Desktop: three columns with hover */}
+        <div className="hidden lg:grid lg:grid-cols-3 lg:gap-6">
           {features.map((f, i) => (
             <FeatureCardDesktop
               key={f.title}
@@ -121,8 +122,23 @@ export default function FeaturesSection() {
           ))}
         </div>
 
+        {/* Tablet: two columns; third card centered on second row */}
+        <div className="hidden md:grid md:grid-cols-2 md:gap-6 lg:hidden">
+          {features.map((f, i) => (
+            <div
+              key={f.title}
+              className={i === 2 ? 'md:col-span-2 flex justify-center' : ''}
+            >
+              <div className={i === 2 ? 'w-full max-w-sm' : 'w-full'}>
+                <FeatureCardDesktop f={f} i={i} hovered={hovered} setHovered={setHovered} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Phone: swipe carousel */}
         <div
-          className="lg:hidden -mx-4 px-4 overflow-x-auto overscroll-x-contain touch-pan-x pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="md:hidden -mx-4 px-4 overflow-x-auto overscroll-x-contain touch-pan-x pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           <div
