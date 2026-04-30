@@ -256,7 +256,7 @@ export default function HeroSection() {
                 className="absolute inset-0 pointer-events-none select-none flex items-center justify-center lg:justify-start"
                 aria-hidden="true"
                 style={{
-                  fontFamily: '\'Barlow Condensed\', sans-serif',
+                  fontFamily: 'inherit',
                   fontStyle: 'italic',
                   fontWeight: 900,
                   fontSize: 'clamp(3rem, 7vw, 4.5rem)',

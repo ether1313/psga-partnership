@@ -54,17 +54,11 @@ function CasinoCard({ casino }: { casino: Casino }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden flex items-center justify-center transition-all duration-300"
+        className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden flex items-center justify-center transition-all duration-300 bg-white border-2 shadow-sm"
         style={{
-          background:
-            casino.label === 'PNGGO'
-              ? 'linear-gradient(145deg, #ffffff, #f0f0f0)'
-              : 'linear-gradient(145deg, #1a0a00, #0d0500)',
-          border: `2px solid ${hovered ? '#FFD700' : '#f59e0b33'}`,
-          boxShadow: hovered
-            ? '0 0 22px #FFD70077, 0 0 44px #f59e0b33'
-            : '0 0 6px #f59e0b11',
-          transform: hovered ? 'translateY(-4px) scale(1.06)' : 'translateY(0) scale(1)',
+          borderColor: hovered ? '#C04000' : '#e2e8f0',
+          boxShadow: hovered ? '0 8px 24px rgba(15,23,42,0.12)' : '0 1px 3px rgba(15,23,42,0.08)',
+          transform: hovered ? 'translateY(-4px) scale(1.04)' : 'translateY(0) scale(1)',
         }}
       >
         <img
@@ -77,13 +71,9 @@ function CasinoCard({ casino }: { casino: Casino }) {
         />
       </div>
       <span
-        className="subheading-casino text-xs tracking-wider text-center whitespace-nowrap transition-all duration-300"
-        style={{
-          color: hovered ? '#FFD700' : '#CCCCCC',
-          textShadow: hovered
-            ? '0 0 10px #FFD700aa, 0 0 20px #FFD70055, 0 1px 2px rgba(0,0,0,0.9)'
-            : '0 1px 2px rgba(0,0,0,0.8)',
-        }}
+        className={`subheading-casino text-xs tracking-wider text-center whitespace-nowrap transition-colors duration-300 ${
+          hovered ? 'text-[#C04000]' : 'text-slate-600'
+        }`}
       >
         {casino.label}
       </span>
@@ -113,16 +103,14 @@ function CategorySection({
   return (
     <div
       data-category={category}
-      className="rounded-xl p-5 relative overflow-hidden"
+      className="rounded-xl p-5 relative overflow-hidden bg-white border-x border-b border-slate-200 shadow-sm"
       style={{
-        background: 'linear-gradient(145deg, #111, #0a0a0a)',
-        border: `1px solid ${accentColor}33`,
-        boxShadow: `0 0 20px ${accentColor}11`,
+        borderTop: `3px solid ${accentColor}`,
       }}
     >
       {/* Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
-        <span className="headline-cinematic text-5xl" style={{ color: '#FFD700', letterSpacing: '0.15em' }}>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.06]">
+        <span className="headline-cinematic text-5xl text-slate-100 tracking-wide">
           PSGA GAMING
         </span>
       </div>
@@ -146,28 +134,16 @@ function CategorySection({
             >
               <i className={`${icon} text-sm`} style={{ color: accentColor }}></i>
             </div>
-            <span
-              className="subheading-casino text-xs tracking-widest uppercase"
-              style={{ color: '#CCCCCC', textShadow: '0 1px 2px rgba(0,0,0,0.9)' }}
-            >
+            <span className="subheading-casino text-xs tracking-widest uppercase text-slate-700">
               WEEKLY RECOMMEND BY PSGA
             </span>
-            <span
-              className="label-futuristic px-3 py-1 rounded-full flex items-center gap-1 shrink-0"
-              style={{
-                background: 'linear-gradient(135deg, #b45309, #FFD700)',
-                color: '#000000',
-                boxShadow: '0 0 12px #FFD70077',
-                fontSize: '0.65rem',
-              }}
-            >
+            <span className="label-futuristic px-3 py-1 rounded-full flex items-center gap-1 shrink-0 text-xs bg-amber-100 text-amber-950 border border-amber-300">
               <i className="ri-trophy-fill"></i> TOP TIER
             </span>
             <img
               src={`${import.meta.env.BASE_URL}images/weekly-top-tier-banner.png`}
               alt="PNGGO weekly jackpot banner"
-              className="h-6 sm:h-7 w-auto max-w-[100px] sm:max-w-[118px] object-contain object-left rounded-md shrink-0"
-              style={{ filter: 'drop-shadow(0 0 8px #FFD70033)' }}
+              className="h-6 sm:h-7 w-auto max-w-[100px] sm:max-w-[118px] object-contain object-left rounded-md shrink-0 shadow-sm"
             />
           </div>
         ) : (
@@ -179,10 +155,7 @@ function CategorySection({
               <i className={`${icon} text-sm`} style={{ color: accentColor }}></i>
             </div>
             <div>
-              <span
-                className="subheading-casino text-xs tracking-widest uppercase block"
-                style={{ color: '#CCCCCC', textShadow: '0 1px 2px rgba(0,0,0,0.9)' }}
-              >
+              <span className="subheading-casino text-xs tracking-widest uppercase block text-slate-700">
                 COMPANY IN THIS CATEGORY
               </span>
               <span
@@ -216,10 +189,7 @@ function CategorySection({
 
 export default function CasinosPage() {
   return (
-    <div
-      className="min-h-screen pb-24 relative"
-      style={{ background: '#050300' }}
-    >
+    <div className="min-h-screen pb-24 relative bg-slate-100 text-slate-900">
       {/* Grid background */}
       <GridBackground zone="normal" style={{ position: 'fixed', zIndex: 0 }} />
 
@@ -227,27 +197,15 @@ export default function CasinosPage() {
         <SiteHeader />
 
         {/* Page title */}
-        <div
-          className="py-6 px-4 text-center"
-          style={{
-            background: 'linear-gradient(180deg, rgba(28,12,0,0.7) 0%, transparent 100%)',
-            borderBottom: '1px solid #FFD70022',
-          }}
-        >
+        <div className="py-4 px-4 text-center bg-white/90 border-b border-slate-200 md:py-6">
           <h1
-            className="headline-cinematic"
-            style={{
-              fontSize: '2rem',
-              color: '#FFD700',
-              filter: 'drop-shadow(0 0 10px #FFD70077)',
-            }}
+            className="headline-cinematic text-xl sm:text-2xl md:text-3xl leading-tight"
+            style={{ color: '#C04000' }}
           >
-            <i className="ri-gamepad-fill mr-2"></i>Casino Platforms
+            <i className="ri-gamepad-fill mr-1.5 sm:mr-2 inline text-[1em]" style={{ color: '#C04000' }}></i>
+            Casino Platforms
           </h1>
-          <p
-            className="subheading-casino text-xs mt-1"
-            style={{ color: '#CCCCCC', textShadow: '0 1px 3px rgba(0,0,0,0.9)' }}
-          >
+          <p className="subheading-casino text-xs mt-1 text-slate-600">
             Verified &amp; Trusted Gaming Partners
           </p>
         </div>
@@ -268,7 +226,7 @@ export default function CasinosPage() {
           <CategorySection
             category="thirdtier"
             casinos={thirdtierCasinos}
-            accentColor="#fbbf24"
+            accentColor="#C04000"
             icon="ri-medal-fill"
           />
         </main>

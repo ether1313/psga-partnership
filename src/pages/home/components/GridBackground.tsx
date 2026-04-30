@@ -47,9 +47,9 @@ export default function GridBackground({ zone = 'normal', className = '', style 
 
       ctx.clearRect(0, 0, w, h);
 
-      // ── Layer 1: Base grid — very subtle dark gold ──────────────────────────
-      const baseAlpha = zone === 'hero' ? 0.07 : 0.045;
-      ctx.strokeStyle = `rgba(180, 130, 20, ${baseAlpha})`;
+      // ── Layer 1: Base grid — subtle slate (light theme) ────────────────────
+      const baseAlpha = zone === 'hero' ? 0.14 : 0.09;
+      ctx.strokeStyle = `rgba(100, 116, 139, ${baseAlpha})`;
       ctx.lineWidth = 0.5;
 
       // Vertical lines
@@ -71,8 +71,8 @@ export default function GridBackground({ zone = 'normal', className = '', style 
         ctx.stroke();
       }
 
-      // ── Layer 2: Mid-layer soft gold glow lines (every 4th line) ───────────
-      const midAlpha = zone === 'hero' ? 0.18 : 0.10;
+      // ── Layer 2: Mid-layer warm accent (every 4th line) ───────────────────
+      const midAlpha = zone === 'hero' ? 0.22 : 0.12;
       ctx.lineWidth = 1;
 
       // Vertical glow lines
@@ -80,13 +80,13 @@ export default function GridBackground({ zone = 'normal', className = '', style 
         const top = perspectivePoint(x, 0, w, h);
         const bot = perspectivePoint(x, h, w, h);
         const grad = ctx.createLinearGradient(top.px, 0, bot.px, h);
-        grad.addColorStop(0, `rgba(200, 150, 20, 0)`);
-        grad.addColorStop(0.3, `rgba(200, 150, 20, ${midAlpha})`);
-        grad.addColorStop(0.7, `rgba(200, 150, 20, ${midAlpha})`);
-        grad.addColorStop(1, `rgba(200, 150, 20, 0)`);
+        grad.addColorStop(0, `rgba(217, 119, 6, 0)`);
+        grad.addColorStop(0.3, `rgba(217, 119, 6, ${midAlpha * 0.45})`);
+        grad.addColorStop(0.7, `rgba(217, 119, 6, ${midAlpha * 0.45})`);
+        grad.addColorStop(1, `rgba(217, 119, 6, 0)`);
         ctx.strokeStyle = grad;
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = `rgba(200, 150, 20, 0.3)`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = `rgba(251, 191, 36, 0.2)`;
         ctx.beginPath();
         ctx.moveTo(top.px, top.py);
         ctx.lineTo(bot.px, bot.py);
@@ -99,13 +99,13 @@ export default function GridBackground({ zone = 'normal', className = '', style 
         const left = perspectivePoint(0, y, w, h);
         const right = perspectivePoint(w, y, w, h);
         const grad = ctx.createLinearGradient(0, y, w, y);
-        grad.addColorStop(0, `rgba(200, 150, 20, 0)`);
-        grad.addColorStop(0.2, `rgba(200, 150, 20, ${midAlpha})`);
-        grad.addColorStop(0.8, `rgba(200, 150, 20, ${midAlpha})`);
-        grad.addColorStop(1, `rgba(200, 150, 20, 0)`);
+        grad.addColorStop(0, `rgba(217, 119, 6, 0)`);
+        grad.addColorStop(0.2, `rgba(217, 119, 6, ${midAlpha * 0.45})`);
+        grad.addColorStop(0.8, `rgba(217, 119, 6, ${midAlpha * 0.45})`);
+        grad.addColorStop(1, `rgba(217, 119, 6, 0)`);
         ctx.strokeStyle = grad;
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = `rgba(200, 150, 20, 0.3)`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = `rgba(251, 191, 36, 0.2)`;
         ctx.beginPath();
         ctx.moveTo(left.px, left.py);
         ctx.lineTo(right.px, right.py);
@@ -135,7 +135,7 @@ export default function GridBackground({ zone = 'normal', className = '', style 
           ctx.lineTo(br.px, br.py);
           ctx.lineTo(bl.px, bl.py);
           ctx.closePath();
-          ctx.fillStyle = `rgba(255, 210, 0, ${pulse})`;
+          ctx.fillStyle = `rgba(251, 191, 36, ${pulse * 0.85})`;
           ctx.fill();
           // bright border
           ctx.strokeStyle = `rgba(255, 220, 0, ${pulse * 2.5})`;
@@ -151,9 +151,9 @@ export default function GridBackground({ zone = 'normal', className = '', style 
       const sweepWidth = 120;
       if (sweepX < w + sweepWidth) {
         const sweepGrad = ctx.createLinearGradient(sweepX - sweepWidth, 0, sweepX + sweepWidth, 0);
-        sweepGrad.addColorStop(0, 'rgba(255, 220, 100, 0)');
-        sweepGrad.addColorStop(0.5, 'rgba(255, 220, 100, 0.04)');
-        sweepGrad.addColorStop(1, 'rgba(255, 220, 100, 0)');
+        sweepGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+        sweepGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.06)');
+        sweepGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
         ctx.fillStyle = sweepGrad;
         ctx.fillRect(sweepX - sweepWidth, 0, sweepWidth * 2, h);
       }
@@ -162,12 +162,12 @@ export default function GridBackground({ zone = 'normal', className = '', style 
       for (let x = 0; x <= w; x += CELL * 4) {
         for (let y = 0; y <= h; y += CELL * 4) {
           const pt = perspectivePoint(x, y, w, h);
-          const dotAlpha = zone === 'hero' ? 0.35 : 0.18;
+          const dotAlpha = zone === 'hero' ? 0.28 : 0.14;
           ctx.beginPath();
           ctx.arc(pt.px, pt.py, 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 200, 50, ${dotAlpha})`;
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = 'rgba(255, 200, 50, 0.5)';
+          ctx.fillStyle = `rgba(180, 83, 9, ${dotAlpha})`;
+          ctx.shadowBlur = 2;
+          ctx.shadowColor = 'rgba(251, 191, 36, 0.25)';
           ctx.fill();
           ctx.shadowBlur = 0;
         }

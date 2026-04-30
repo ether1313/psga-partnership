@@ -1,7 +1,7 @@
-# SKG Papua New Guinea – Gaming Platform Website
+# PSGA Papua New Guinea – Gaming Platform Website
 
 ## 1. Project Description
-A promotional/landing website for SKG Papua New Guinea, an online casino gaming platform. The site showcases trusted casino partners, jackpot totals, licensing/security credentials, and responsible gaming information. Target users are online gaming enthusiasts in Papua New Guinea.
+A promotional/landing website for PSGA Papua New Guinea, an online casino gaming platform. The site showcases trusted casino partners, jackpot totals, licensing/security credentials, and responsible gaming information. Target users are online gaming enthusiasts in Papua New Guinea.
 
 ## 2. Page Structure
 - `/` – Home (main landing page with banner, game list, jackpot sidebar, footer)

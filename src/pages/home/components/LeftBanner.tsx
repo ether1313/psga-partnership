@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+const BRAND = '#C04000';
+
 /* ── Animated Casino Signboard ── */
 function CasinoSign() {
   const letters = ['P', 'S', 'G', 'A'];
@@ -60,7 +62,7 @@ function CasinoSign() {
         ★ CASINO ★
       </div>
 
-      {/* Main SKG letters */}
+      {/* Main PSGA letters */}
       <div className="flex items-center gap-2 mb-2">
         {letters.map((letter, i) => (
           <SignLetter key={letter} letter={letter} delay={i * 0.18} />
@@ -207,81 +209,156 @@ function BlinkingDots() {
 function GoldDivider() {
   return (
     <div className="flex items-center gap-2 px-1">
-      <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, #FFD70055)' }} />
-      <i className="ri-star-fill" style={{ color: '#FFD700', fontSize: '10px', filter: 'drop-shadow(0 0 6px #FFD700)' }} />
-      <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, #FFD70055, transparent)' }} />
+      <div
+        className="flex-1 h-px"
+        style={{ background: `linear-gradient(90deg, transparent, ${BRAND}99)` }}
+      />
+      <i className="ri-star-fill" style={{ color: BRAND, fontSize: '10px' }} />
+      <div
+        className="flex-1 h-px"
+        style={{ background: `linear-gradient(90deg, ${BRAND}99, transparent)` }}
+      />
     </div>
   );
 }
 
-/* ── Main LeftBanner ── */
+const trustBadgeSections = [
+  {
+    id: 'license',
+    icon: 'ri-award-fill',
+    title: 'License',
+    img: [
+      `${import.meta.env.BASE_URL}images/license-curacao.png`,
+      `${import.meta.env.BASE_URL}images/license-pagcor.png`,
+    ],
+    color: BRAND,
+  },
+  {
+    id: 'certifications',
+    icon: 'ri-verified-badge-fill',
+    title: 'Certifications',
+    img: [
+      `${import.meta.env.BASE_URL}images/cert-bmm.webp`,
+      `${import.meta.env.BASE_URL}images/cert-iovation.png`,
+    ],
+    color: BRAND,
+  },
+  {
+    id: 'responsible',
+    icon: 'ri-heart-fill',
+    title: 'Responsible Gaming',
+    img: [
+      `${import.meta.env.BASE_URL}images/responsible-therapy.png`,
+      `${import.meta.env.BASE_URL}images/responsible-gamble-aware.png`,
+      `${import.meta.env.BASE_URL}images/responsible-18-only.png`,
+    ],
+    color: BRAND,
+  },
+];
+
+const badgeTileShell = {
+  background: '#ffffff',
+  border: '1px solid #e5e7eb',
+  boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
+} as const;
+
+export function WelcomeBannerImage() {
+  return (
+    <div className="hidden lg:flex lg:justify-center rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
+      <img
+        src="https://storage.readdy-site.link/project_files/e0a8be36-44a1-49ae-8c9c-bcd59c8e395f/d9cd378f-f92b-440e-b8fc-71f025618564_Image_20260417145639_357_17.png"
+        alt="Welcome to PSGA Papua New Guinea"
+        className="w-full max-h-[min(44vw,168px)] object-contain object-top sm:max-h-[min(46vw,200px)] md:max-h-[min(48vw,240px)] lg:max-h-none lg:object-cover"
+        onError={(e) => {
+          (e.target as HTMLImageElement).style.display = 'none';
+        }}
+      />
+    </div>
+  );
+}
+
+export function WelcomeInfoSection() {
+  return (
+    <div className="rounded-xl p-4 bg-white border border-slate-200 shadow-sm">
+      <h2 className="headline-cinematic text-sm mb-2 text-slate-900 tracking-wide">
+        WELCOME TO PSGA...
+      </h2>
+
+      <p className="text-body-casino text-xs leading-relaxed mb-3">
+        PSGA holds itself responsible for any fraudulent or scam activity conducted by casinos introduced under our authority.
+        In such cases, PSGA will take full responsibility for refunds and settlement.
+      </p>
+
+      <div className="border-t border-slate-200 pt-3">
+        <h3 className="label-futuristic mb-1 text-xs" style={{ color: BRAND }}>
+          REFERRING FRIENDS
+        </h3>
+
+        <p className="text-body-casino text-xs leading-relaxed">
+          Refer Friends: Spread the word about PSGA. Share your referral link and earn exciting rewards for every new member you bring onboard!
+        </p>
+        <p className="text-body-casino text-xs leading-relaxed mt-1">
+          Exclusive Offers: Get access to exclusive bonuses, promotions, and special deals. Maximize your winnings and enjoy VIP treatment.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export function TrustBadgesSection() {
+  return (
+    <div className="rounded-xl p-4 bg-white border border-slate-200 shadow-sm">
+      <div className="flex flex-col gap-4">
+        {trustBadgeSections.map((section) => {
+          const urls: string[] = Array.isArray(section.img) ? [...section.img] : [section.img];
+          return (
+            <div key={section.id}>
+              <div className="flex items-center gap-2 mb-2">
+                <div
+                  className="w-6 h-6 flex items-center justify-center rounded-full shrink-0"
+                  style={{
+                    background: `${section.color}22`,
+                    border: `1px solid ${section.color}`,
+                  }}
+                >
+                  <i className={`${section.icon} text-xs`} style={{ color: section.color }} />
+                </div>
+                <h3 className="label-futuristic text-[0.6rem]" style={{ color: BRAND }}>
+                  {section.title}
+                </h3>
+              </div>
+              <div className="flex items-center justify-start gap-2 flex-wrap">
+                {urls.map((src, idx) => (
+                  <div
+                    key={`${section.id}-${idx}`}
+                    className="flex items-center justify-center rounded-md px-2 py-1"
+                    style={badgeTileShell}
+                  >
+                    <img
+                      src={src}
+                      alt={`${section.title} — badge ${idx + 1}`}
+                      className="h-6 max-w-[100px] sm:h-7 sm:max-w-[110px] w-auto object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ── Main LeftBanner (desktop column: image → welcome → trust) ── */
 export default function LeftBanner() {
   return (
     <div className="flex flex-col gap-4">
-      {/* Welcome Banner Image */}
-      <div
-        className="rounded-xl overflow-hidden"
-        style={{
-          border: '1px solid #FFD70044',
-          boxShadow: '0 0 18px #FFD70022',
-        }}
-      >
-        <img
-          src="https://storage.readdy-site.link/project_files/e0a8be36-44a1-49ae-8c9c-bcd59c8e395f/d9cd378f-f92b-440e-b8fc-71f025618564_Image_20260417145639_357_17.png"
-          alt="Welcome to PSGA Papua New Guinea"
-          className="w-full object-top object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = 'none';
-          }}
-        />
-      </div>
-
-      {/* Welcome Info Card */}
-      <div
-        className="rounded-xl p-4"
-        style={{
-          background: 'linear-gradient(145deg, #131313, #0a0a0a)',
-          border: '1px solid #FFD70033',
-        }}
-      >
-        <h2
-          className="headline-cinematic text-sm mb-2"
-          style={{
-            color: '#FFFFFF',
-            letterSpacing: '0.08em',
-            textShadow:
-              '0 0 10px rgba(255,215,0,0.4), 0 0 20px rgba(255,215,0,0.2), 0 1px 3px rgba(0,0,0,0.95)',
-          }}
-        >
-          WELCOME TO PSGA...
-        </h2>
-
-        <p className="text-body-casino text-xs leading-relaxed mb-3">
-          PSGA holds itself responsible for any fraudulent or scam activity conducted by casinos introduced under our authority.
-          In such cases, PSGA will take full responsibility for refunds and settlement.
-        </p>
-
-        <div className="border-t pt-3" style={{ borderColor: '#FFD70022' }}>
-          <h3
-            className="label-futuristic mb-1"
-            style={{
-              color: '#E6C200',
-              fontSize: '0.65rem',
-              textShadow:
-                '0 0 10px #E6C200aa, 0 0 22px #E6C20055, 0 1px 2px rgba(0,0,0,0.9)',
-            }}
-          >
-            REFERRING FRIENDS
-          </h3>
-
-          <p className="text-body-casino text-xs leading-relaxed">
-            Refer Friends: Spread the word about PSGA. Share your referral link and earn exciting rewards for every new member you bring onboard!
-          </p>
-          <p className="text-body-casino text-xs leading-relaxed mt-1">
-            Exclusive Offers: Get access to exclusive bonuses, promotions, and special deals. Maximize your winnings and enjoy VIP treatment.
-          </p>
-        </div>
-      </div>
+      <WelcomeBannerImage />
+      <WelcomeInfoSection />
+      <TrustBadgesSection />
 
       {/* ★ Animated keyframes injected via style tag ★ */}
       <style>{`

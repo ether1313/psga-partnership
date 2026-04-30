@@ -13,51 +13,45 @@ export default function SiteHeader() {
     <>
       {/* Top Header */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled ? 'border-b border-yellow-500/30' : 'border-b border-yellow-500/20'
+        className={`sticky top-0 z-50 transition-all duration-300 border-b ${
+          scrolled ? 'border-slate-200 shadow-sm' : 'border-slate-100'
         }`}
         style={{
-          background: scrolled
-            ? 'rgba(0,0,0,0.97)'
-            : 'linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(5,3,0,0.92) 100%)',
-          backdropFilter: 'blur(8px)',
+          background: scrolled ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.96)',
+          backdropFilter: 'blur(10px)',
         }}
       >
         <div className="relative flex items-center justify-center px-4 py-3">
-          {/* Logo + Title — centered */}
           <a href="/" className="flex items-center justify-center gap-4">
+            {/*
+              Logo PNG is raster: any words baked into the image cannot change font via CSS.
+              Goldman applies only to the HTML title spans below.
+            */}
             <img
               src="https://storage.readdy-site.link/project_files/e0a8be36-44a1-49ae-8c9c-bcd59c8e395f/d9cd378f-f92b-440e-b8fc-71f025618564_Image_20260417145639_357_17.png"
               alt="PSGA Papua New Guinea"
-              className="h-16 object-contain"
-              style={{ filter: 'drop-shadow(0 0 14px #FFD70099)' }}
+              className="h-16 object-contain shrink-0"
+              style={{ filter: 'drop-shadow(0 2px 8px rgba(180,83,9,0.2))' }}
             />
-            <div className="flex flex-col gap-0">
+            <div className="goldman-regular flex flex-col gap-0">
               <span
-                className="text-2xl font-black tracking-widest whitespace-nowrap leading-none"
+                className="text-2xl sm:text-[1.65rem] tracking-[0.08em] whitespace-nowrap leading-none uppercase"
                 style={{
-                  background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 30%, #FFD700 70%, #FFA500 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textShadow: 'none',
-                  filter: 'drop-shadow(0 0 8px #FF000066)',
-                  fontFamily: '"Rajdhani", "Oswald", sans-serif',
-                  letterSpacing: '0.12em',
+                  color: '#911B1D',
+                  fontFamily: '"Goldman", ui-sans-serif, system-ui, sans-serif',
+                  fontWeight: 400,
+                  fontStyle: 'normal',
                 }}
               >
                 PNG SECURE
               </span>
               <span
-                className="text-xl font-bold tracking-widest whitespace-nowrap leading-none -mt-1"
+                className="text-lg sm:text-xl tracking-[0.06em] whitespace-nowrap leading-none -mt-0.5 uppercase"
                 style={{
-                  background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 40%, #FF4500 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  filter: 'drop-shadow(0 0 6px #FFD70066)',
-                  fontFamily: '"Rajdhani", "Oswald", sans-serif',
-                  letterSpacing: '0.08em',
+                  color: '#8C5520',
+                  fontFamily: '"Goldman", ui-sans-serif, system-ui, sans-serif',
+                  fontWeight: 400,
+                  fontStyle: 'normal',
                 }}
               >
                 GAMING ALLIANCE
@@ -67,37 +61,33 @@ export default function SiteHeader() {
         </div>
       </header>
 
-      {/* Glowing Marquee ticker */}
+      {/* Marquee ticker */}
       <div
-        className="overflow-hidden whitespace-nowrap py-2 relative"
+        className="overflow-hidden whitespace-nowrap py-2 relative border-b border-red-900/10"
         style={{
-          background: 'linear-gradient(90deg, #7f0000, #cc0000, #ff0000, #cc0000, #7f0000)',
-          boxShadow: '0 0 24px #ff000077, 0 2px 12px #ff000044',
+          background: 'linear-gradient(90deg, #9f1239, #b91c1c, #dc2626, #b91c1c, #9f1239)',
         }}
       >
         <div className="animate-marquee-slow inline-block">
           {[1, 2, 3].map((i) => (
             <span key={i} className="inline-block">
               <span
-                className="subheading-casino text-sm"
+                className="subheading-casino text-sm text-white"
                 style={{
-                  color: '#FFFFFF',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  textShadow:
-                    '0 0 8px #FFFFFF, 0 0 18px #FFD700, 0 0 32px #FFD70066, 0 1px 3px rgba(0,0,0,0.6)',
+                  fontWeight: 600,
+                  letterSpacing: '0.06em',
                 }}
               >
                 🔥 HOT: PSGA-VETTED PLATFORMS FOR PNG &nbsp;•&nbsp; JOIN THE ALLIANCE — PLAY SAFE &nbsp;•&nbsp;{' '}
-                <span style={{ color: '#FFD700', textShadow: '0 0 10px #FFD700, 0 0 22px #FFD70099' }}>
+                <span className="text-amber-100">
                   CERTIFIED SITES ONLY — WE VERIFY FOR YOU
                 </span>
                 {' '}&nbsp;•&nbsp; PNG PLAYERS: FIND YOUR TRUSTED PLATFORM &nbsp;•&nbsp; PSGA SECURITY AND LICENSE CHECKS &nbsp;•&nbsp;{' '}
-                <span style={{ color: '#FFF176', textShadow: '0 0 10px #FFF176, 0 0 20px #FFD70066' }}>
+                <span className="text-amber-50">
                   ONLY RECOMMENDED SAFE OPERATORS FOR PNG
                 </span>
                 {' '}&nbsp;•&nbsp; YOUR PNG GAMING ALLIANCE &nbsp;•&nbsp; STAY PROTECTED — CHOOSE PSGA-LISTED BRANDS &nbsp;•&nbsp;{' '}
-                <span style={{ color: '#FFD700', textShadow: '0 0 10px #FFD700, 0 0 22px #FFD70099' }}>
+                <span className="text-amber-100">
                   TRENDING: SAFE PLAY IN PAPUA NEW GUINEA
                 </span>
                 {' '}&nbsp;•&nbsp;

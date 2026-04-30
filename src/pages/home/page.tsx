@@ -1,17 +1,14 @@
 import SiteHeader from './components/SiteHeader';
 import FeaturesSection from './components/FeaturesSection';
-import LeftBanner from './components/LeftBanner';
+import LeftBanner, { WelcomeInfoSection, TrustBadgesSection } from './components/LeftBanner';
 import CenterContent from './components/CenterContent';
-import RightSidebar from './components/RightSidebar';
+import { HighestWinratePlatform } from './components/RightSidebar';
 import BottomNav from './components/BottomNav';
 import GridBackground from './components/GridBackground';
 
 export default function HomePage() {
   return (
-    <div
-      className="min-h-screen pb-20 relative"
-      style={{ background: '#050300', color: '#fff' }}
-    >
+    <div className="min-h-screen pb-20 relative text-slate-900" style={{ background: '#f1f5f9' }}>
       {/* Global subtle grid — covers entire page */}
       <GridBackground zone="normal" style={{ position: 'fixed', zIndex: 0 }} />
 
@@ -26,28 +23,34 @@ export default function HomePage() {
         {/* Divider */}
         <div
           className="w-full h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, #f59e0b44, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(192,64,0,0.35), transparent)' }}
         />
 
-        {/* Main 3-column layout */}
+        {/* Main layout */}
         <main
           className="max-w-screen-xl mx-auto px-3 py-6"
           style={{ background: 'transparent' }}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-5">
-            {/* Left: Banners & Info */}
+          {/* Mobile: winrate → welcome copy → center → trust badges (last). Welcome banner hidden on mobile (see LeftBanner). */}
+          <div className="flex flex-col gap-5 lg:hidden">
+            <HighestWinratePlatform />
+            <WelcomeInfoSection />
+            <CenterContent />
+            <TrustBadgesSection />
+          </div>
+
+          {/* Desktop: 3 columns */}
+          <div className="hidden lg:grid lg:grid-cols-[280px_1fr_260px] gap-5">
             <aside className="flex flex-col gap-4">
               <LeftBanner />
             </aside>
 
-            {/* Center: Description, Badges */}
             <section className="flex flex-col gap-4">
               <CenterContent />
             </section>
 
-            {/* Right: Jackpot Sidebar */}
             <aside className="flex flex-col gap-4">
-              <RightSidebar />
+              <HighestWinratePlatform />
             </aside>
           </div>
         </main>

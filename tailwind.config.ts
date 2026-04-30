@@ -16,9 +16,18 @@ export default {
           },
         },
         fontFamily: {
-          barlow: ['Barlow Condensed', 'sans-serif'],
-          rajdhani: ['Rajdhani', 'sans-serif'],
-          orbitron: ['Orbitron', 'sans-serif'],
+          sans: [
+            'system-ui',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+          ],
+          /** Header logo title — Goldman (Google Fonts) */
+          gaming: ['Goldman', 'system-ui', 'sans-serif'],
         },
         keyframes: {
           marquee: {
